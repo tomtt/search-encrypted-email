@@ -3,4 +3,4 @@
 require 'pry'
 require_relative '../lib/thunderbird.rb'
 
-puts Thunderbird.search("update 01").map(&:subject)
+puts Thunderbird.search("Tech subcommittee").map(&:subject)
