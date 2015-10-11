@@ -21,7 +21,7 @@ module Thunderbird
     end
 
     def is_encrypted?(content)
-      false
+      content && content.include?("BEGIN PGP MESSAGE")
     end
 
     def row_matches_query?(row, query)

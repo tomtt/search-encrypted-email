@@ -15,7 +15,7 @@ module Thunderbird
   end
 
   def self.with_ruby_files(&block)
-    Dir.glob(File.join(Thunderbird.root, 'lib', 'thunderbird', '**', "*.rb")) { |file| yield(file) }
+    Dir.glob(File.join(Thunderbird.root, 'lib', '**', "*.rb")) { |file| yield(file) }
   end
 
   def self.search(query)
