@@ -2,13 +2,23 @@ require 'sqlite3'
 
 module Thunderbird
   class Database
-    def initialize
-      @db = SQLite3::Database.new('global-messages-db.sqlite')
+    def initialize(filename:)
+      @db = SQLite3::Database.new(filename.to_s)
       set_mozport_tokenizer!
     end
 
     def all_emails
-      SelectResult.new(db: @db, query: "select * from messagesText").rows
+      sql_query = <<-EOT
+        SELECT
+          docid,
+          c0body as body,
+          c1subject as subject,
+          c2attachmentNames as attachment_names,
+          c3author as author,
+          c4recipients as recipients
+        FROM messagesText_content;
+      EOT
+      rows = SelectResult.new(db: @db, query: sql_query).rows
    end
 
     private

@@ -20,6 +20,8 @@ class Sleuth
   def entry_matches_query?(entry)
     return true if content_matches_query?(entry["subject"])
     return true if content_matches_query?(entry["author"])
+    return true if content_matches_query?(entry["recipients"])
+    return true if content_matches_query?(entry["attachment_names"])
     if is_encrypted?(entry["body"])
       return true if content_matches_query?(GPG.decrypt(entry["body"]))
     else

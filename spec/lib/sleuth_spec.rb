@@ -25,8 +25,16 @@ describe Sleuth do
       expect(sleuth.entry_qualifies?({ "author" => "there is a needle in here" })).to be_truthy
     end
 
+    it "qualifies if the recipients matches" do
+      expect(sleuth.entry_qualifies?({ "recipients" => "there is a needle in here" })).to be_truthy
+    end
+
     it "qualifies if the body matches" do
       expect(sleuth.entry_qualifies?({ "body" => "there is a needle in here" })).to be_truthy
+    end
+
+    it "qualifies if the attachment_names matches" do
+      expect(sleuth.entry_qualifies?({ "attachment_names" => "there is a needle in here" })).to be_truthy
     end
 
     it "qualifies if decrypted body matches" do

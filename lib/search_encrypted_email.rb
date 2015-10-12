@@ -20,7 +20,7 @@ module SearchEncryptedEmail
 
   def self.search(query)
     sleuth = Sleuth.new(query)
-    Thunderbird::Database.new.all_emails.select do |email_entry|
+    Thunderbird::Database.new(filename: 'global-messages-db.sqlite').all_emails.select do |email_entry|
       sleuth.entry_qualifies?(email_entry)
     end
   end

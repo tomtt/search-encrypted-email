@@ -1,4 +1,5 @@
 require File.expand_path("../../lib/search_encrypted_email", __FILE__)
+require 'pry'
 
 RSpec.configure do |config|
   # Run specs in random order to surface order dependencies. If you find an
