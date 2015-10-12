@@ -1,6 +1,0 @@
-#!/usr/bin/env ruby
-
-require 'pry'
-require_relative '../lib/thunderbird.rb'
-
-puts Thunderbird.search("Tech subcommittee").map(&:subject)

@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'pry'
+require_relative '../lib/search_encrypted_email.rb'
+
+puts SearchEncryptedEmail.search("Tech subcommittee").map(&:subject)

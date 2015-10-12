@@ -1,4 +1,4 @@
-module Thunderbird
+module SearchEncryptedEmail
   def self.root
     Pathname.new(File.absolute_path(File.join(File.dirname(__FILE__), '..')))
   end
@@ -15,7 +15,7 @@ module Thunderbird
   end
 
   def self.with_ruby_files(&block)
-    Dir.glob(File.join(Thunderbird.root, 'lib', '**', "*.rb")) { |file| yield(file) }
+    Dir.glob(File.join(SearchEncryptedEmail.root, 'lib', '**', "*.rb")) { |file| yield(file) }
   end
 
   def self.search(query)
@@ -23,4 +23,4 @@ module Thunderbird
   end
 end
 
-Thunderbird.require_all
+SearchEncryptedEmail.require_all
