@@ -9,7 +9,7 @@ module Thunderbird
 
     def search(query)
       results = SelectResult.new(db: @db, query: "select * from messagesText")
-      matches = results.rows.select do |row|
+      results.rows.select do |row|
         row_matches_query?(row, query)
       end
     end
