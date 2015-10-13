@@ -31,15 +31,16 @@ module SearchEncryptedEmail
     s << "TIME: #{result["time"].rfc822}\n"
     s << "FROM: #{result["author"]}\n"
     s << "TO: #{result["recipients"]}\n"
-    s << "---\n" << result["body"] << "\n---\n"
-    if result["attachment_names"]
+    unless result["attachment_names"].empty?
       s << "ATTACHMENT_NAMES: #{result["attachment_names"]}\n"
     end
+    s << "---\n" << result["body"] << "\n"
+    s << '-' * 80 + "\n"
     s
   end
 
   def self.print_report(results)
-    puts results.map { |result| output_for_result(result) }.join('-' * 80 + "\n")
+    puts results.map { |result| output_for_result(result) }.join
   end
 end
 
