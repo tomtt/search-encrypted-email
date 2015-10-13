@@ -28,7 +28,7 @@ module SearchEncryptedEmail
   def self.output_for_result(result)
     s = ""
     s << "SUBJECT: #{result["subject"]}\n"
-    s << "TIME: #{result["time"]}\n"
+    s << "TIME: #{result["time"].rfc822}\n"
     s << "FROM: #{result["author"]}\n"
     s << "TO: #{result["recipients"]}\n"
     s << "---\n" << result["body"] << "\n---\n"
