@@ -28,11 +28,11 @@ class Sleuth
   end
 
   def entry_matches_search_options?(entry)
+    decrypt_body_if_encrypted(entry)
     return true if content_matches_search_options?(entry["subject"])
     return true if content_matches_search_options?(entry["author"])
     return true if content_matches_search_options?(entry["recipients"])
     return true if content_matches_search_options?(entry["attachment_names"])
-    decrypt_body_if_encrypted(entry)
     return true if content_matches_search_options?(entry["body"])
     return false
   end
