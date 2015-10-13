@@ -40,6 +40,7 @@ module SearchEncryptedEmail
       s << "<no body>\n"
     end
     s << '-' * 80 + "\n"
+    s.force_encoding('UTF-8')
     s
   end
 
