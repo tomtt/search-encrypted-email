@@ -21,17 +21,19 @@ class Sleuth
     content && content.include?("BEGIN PGP MESSAGE")
   end
 
+  def decrypt_body_if_encrypted(entry)
+    if is_encrypted?(entry["body"])
+      entry["body"] = GPG.decrypt(entry["body"])
+    end
+  end
+
   def entry_matches_search_options?(entry)
     return true if content_matches_search_options?(entry["subject"])
     return true if content_matches_search_options?(entry["author"])
     return true if content_matches_search_options?(entry["recipients"])
     return true if content_matches_search_options?(entry["attachment_names"])
-    if is_encrypted?(entry["body"])
-      return true if content_matches_search_options?(GPG.decrypt(entry["body"]))
-    else
-      return true if content_matches_search_options?(entry["body"])
-    end
+    decrypt_body_if_encrypted(entry)
+    return true if content_matches_search_options?(entry["body"])
     return false
   end
-
 end
