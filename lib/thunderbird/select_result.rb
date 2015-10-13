@@ -10,6 +10,10 @@ module Thunderbird
       @rows = @rows.map { |r| map_row_to_struct(r) }
     end
 
+    def rows(&block)
+      @rows.map(&block)
+    end
+
     private
 
     def map_row_to_struct(row)
