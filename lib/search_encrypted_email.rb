@@ -18,8 +18,8 @@ module SearchEncryptedEmail
     Dir.glob(File.join(SearchEncryptedEmail.root, 'lib', '**', "*.rb")) { |file| yield(file) }
   end
 
-  def self.search(query)
-    sleuth = Sleuth.new(query)
+  def self.search(search_options)
+    sleuth = Sleuth.new(search_options)
     Thunderbird::Database.new(filename: 'global-messages-db.sqlite').all_emails.select do |email_entry|
       sleuth.entry_qualifies?(email_entry)
     end
