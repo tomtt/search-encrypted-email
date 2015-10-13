@@ -4,7 +4,7 @@ module Thunderbird
   class Database
     def initialize(filename:)
       @db = SQLite3::Database.new(filename.to_s)
-      set_mozport_tokenizer!
+      # set_mozport_tokenizer!
     end
 
     def all_emails
@@ -34,9 +34,13 @@ module Thunderbird
     private
 
     def set_mozport_tokenizer!
+      # This was nescesary when we were using the messagesText table but not any
+      # longer now we are using the messagesText_content table. Leaving the code
+      # here for now in case something else would require it.
+
       # http://wontfix-en.blogspot.nl/2010/04/how-to-view-messagetext-table-for.html
-      tokenizer_hex = @db.execute("select hex(fts3_tokenizer('porter'));")[0][0]
-      @db.execute("SELECT fts3_tokenizer('mozporter',X'#{tokenizer_hex}')")
+      # tokenizer_hex = @db.execute("select hex(fts3_tokenizer('porter'));")[0][0]
+      # @db.execute("SELECT fts3_tokenizer('mozporter',X'#{tokenizer_hex}')")
     end
   end
 end
