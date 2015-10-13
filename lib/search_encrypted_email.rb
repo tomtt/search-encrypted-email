@@ -34,7 +34,11 @@ module SearchEncryptedEmail
     unless result["attachment_names"].empty?
       s << "ATTACHMENT_NAMES: #{result["attachment_names"]}\n"
     end
-    s << "---\n" << result["body"] << "\n"
+    if result["body"]
+      s << "---\n" << result['body'] << "\n"
+    else
+      s << "<no body>\n"
+    end
     s << '-' * 80 + "\n"
     s
   end
