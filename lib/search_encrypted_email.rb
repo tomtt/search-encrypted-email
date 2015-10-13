@@ -32,7 +32,9 @@ module SearchEncryptedEmail
     s << "FROM: #{result["author"]}\n"
     s << "TO: #{result["recipients"]}\n"
     s << "---\n" << result["body"] << "\n---\n"
-    s << "ATTACHMENT_NAMES: #{result["attachment_names"]}\n"
+    if result["attachment_names"]
+      s << "ATTACHMENT_NAMES: #{result["attachment_names"]}\n"
+    end
     s
   end
 
