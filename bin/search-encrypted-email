@@ -4,4 +4,5 @@ require 'pry'
 require_relative '../lib/search_encrypted_email.rb'
 
 
-puts SearchEncryptedEmail.search(SearchEncryptedEmail::CLI.options_for_search)
+results = SearchEncryptedEmail.search(SearchEncryptedEmail::CLI.options_for_search)
+SearchEncryptedEmail.print_report(results)

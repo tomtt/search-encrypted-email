@@ -24,6 +24,21 @@ module SearchEncryptedEmail
       sleuth.entry_qualifies?(email_entry)
     end
   end
+
+  def self.output_for_result(result)
+    s = ""
+    s << "SUBJECT: #{result["subject"]}\n"
+    s << "TIME: #{result["time"]}\n"
+    s << "FROM: #{result["author"]}\n"
+    s << "TO: #{result["recipients"]}\n"
+    s << "---\n" << result["body"] << "\n---\n"
+    s << "ATTACHMENT_NAMES: #{result["attachment_names"]}\n"
+    s
+  end
+
+  def self.print_report(results)
+    puts results.map { |result| output_for_result(result) }.join('-' * 80 + "\n")
+  end
 end
 
 SearchEncryptedEmail.require_all
