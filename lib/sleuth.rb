@@ -12,7 +12,7 @@ class Sleuth
   def content_matches_search_options?(content)
     return false unless content
     @search_options[:query].each do |word|
-      return false unless content.include?(word)
+      return false unless content.downcase.include?(word.downcase)
     end
     return true
   end
